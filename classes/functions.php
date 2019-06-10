@@ -31,5 +31,13 @@ class Functions {
         usort($array, "cmp");
         return $array;
     }
+     public static function removeCodesOnDistance($codes,$distance){
+         foreach ($codes as $key => $code) {
+             if ($code->Distance>$distance){
+                 unset($codes[$key]);
+             }
+         }
+         return $codes;
+    }
 
 }

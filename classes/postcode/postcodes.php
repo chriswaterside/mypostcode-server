@@ -41,16 +41,12 @@ class PostcodePostcodes {
             }
 
             $codes = Functions::sortOnDistance($codes);
+            $codes = Functions::removeCodesOnDistance($codes, $distance);
             $noFound = count($codes);
-            $no = $maxpoints;
-            if ($noFound > 0) {
-                $code=$codes[0];
-                if ($code->Distance < 100) {
-                    $no = 10;
-                }
+            if ($noFound > $maxpoints) {
+                $codes = array_slice($codes, 0, $maxpoints);
             }
-            $out = array_slice($codes, 0, $no);
-            return $out;
+            return $codes;
         }
     }
 

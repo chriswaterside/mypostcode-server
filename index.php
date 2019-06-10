@@ -1,11 +1,11 @@
 <?php
 
 // options
-// index.php?gr=Sk123456&dist=nn&maxpoints=mm
+// index.php?easting=394120&northing=806540&dist=1&maxpoints=1000
 //  where 
-//      gr is the grid reference
-//      nn is distance from gr in Km
-//      mm is the maximum number for points to return
+//      easting and northing is the location
+//      dist is distance from location in Km
+//      maxpoints is the maximum number for points to return
 // task.php scheduled task to update postcodes from OS datasets
 
 
@@ -29,8 +29,25 @@ $opts = new Options();
 $easting = $opts->gets("easting");
 $northing = $opts->gets("northing");
 $distance = $opts->gets("dist");
-
 $maxpoints = $opts->gets("maxpoints");
+$exit=false;
+if ($easting===null){
+    $exit=true;
+}
+if ($northing===null){
+    $exit=true;
+}
+if ($distance===null){
+   $distance=1;
+}
+if ($maxpoints===null){
+    $maxpoints=1;
+}
+if ($exit){
+    $postcodes=[];
+    echo json_encode($postcodes);
+    exit;
+}
 
 $pcs = new PostcodePostcodes($db);
 $postcodes = $pcs->getCodes($easting, $northing, $distance*1000, $maxpoints);

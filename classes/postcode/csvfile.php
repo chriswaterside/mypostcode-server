@@ -21,15 +21,15 @@ class PostcodeCsvfile {
 
     public function ProcessCSVFile($db) {
         $handle = fopen($this->path, "r");
-        // check file exsists
+// check file exsists
         if ($handle == false) {
-            //error
+//error
         } else {
             $day = date("Y-m-d");
             $row = 0;
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 $num = count($data);
-                //  echo "<p> $num fields in line $row: <br /></p>". PHP_EOL;
+//  echo "<p> $num fields in line $row: <br /></p>". PHP_EOL;
                 $row++;
                 if ($num >= 4) {
                     $postcode = $data[0];
@@ -49,7 +49,7 @@ class PostcodeCsvfile {
                     $names[] = "northing";
                     $names[] = "updated";
                     $result = $db->addPostcode($postcode, $names, $values);
-                    //  $result = $db->insertRecord('postcodes', $names, $values);
+//  $result = $db->insertRecord('postcodes', $names, $values);
                     if ($result === false) {
                         Logfile::writeError("Unable to update/insert postcode " . $postcode);
                     }
@@ -66,6 +66,7 @@ class PostcodeCsvfile {
             unlink($file . ".done");
         }
         rename($file, $file . ".done");
-        echo $file." - file renamed<br/>";
+        echo $file . " - file renamed<br/>";
     }
+
 }
