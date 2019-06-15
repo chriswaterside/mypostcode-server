@@ -2,7 +2,7 @@
 
         const POSTCODEFOLDER = 'postcodefiles';
 
-error_reporting(-1);
+error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 if (version_compare(PHP_VERSION, '7.0.0') < 0) {
     echo 'You MUST be running on PHP version 7.0.0 or higher, running version: ' . \PHP_VERSION . "\n";

@@ -128,7 +128,4 @@ class Database {
         $out = substr($out, 0, -3) . ") ";
         return $out;
     }
-
-    
-
 }

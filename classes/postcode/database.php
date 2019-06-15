@@ -48,6 +48,15 @@ class PostcodeDatabase extends Database {
         return $ok;
     }
 
+    public function getPostcode($pc) {
+        $where = " WHERE postcode='" . $pc."'";
+        $ok = parent::runQuery("SELECT * FROM postcodes " . $where);
+        if ($ok === false) {
+            Logfile::writeError($this->db->ErrorMsg());
+        }
+        return $ok;
+    }
+
     public static function AddDistanceToResults($x, $y, $results) {
         foreach ($results as $key => $value) {
             $dist = self::distance($x, $y, $value['easting'], $value['northing']);

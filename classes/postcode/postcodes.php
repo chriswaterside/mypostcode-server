@@ -20,7 +20,6 @@ class PostcodePostcodes {
     }
 
     public function getCodes($easting, $northing, $distance, $maxpoints) {
-
         if ($distance == false) {
             $distance = 10000; //10Km
         }
@@ -50,4 +49,22 @@ class PostcodePostcodes {
         }
     }
 
+    public function getPostcode($postcode) {
+
+        $pc = strtoupper(str_replace(" ", "", $postcode));
+        $ok = $this->db->getPostcode($pc);
+        if ($ok == true) {
+            $results = $this->db->getResult();
+            $codes = array();
+            foreach ($results as $value) {
+                $east = $value['easting'];
+                $north = $value['northing'];
+                $dist = 0;
+                $code = new PostcodePostcode($value['postcode'], intval($value['quality']), $dist, intval($east), intval($north));
+                $codes[] = $code;
+            }
+
+            return $codes;
+        }
+    }
 }
