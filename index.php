@@ -9,7 +9,7 @@
 // index.php?postcode=de221jt
 //  where 
 //      postcode is the postcode!
-
+//      
 // task.php scheduled task to update postcodes from OS datasets
 
 
@@ -60,7 +60,7 @@ if ($postcode !== null) {
         echo json_encode($postcodes);
         exit;
     }
-
+    
     $pcs = new PostcodePostcodes($db);
     $postcodes = $pcs->getCodes($easting, $northing, $distance * 1000, $maxpoints);
     header("Access-Control-Allow-Origin: *");

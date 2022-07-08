@@ -1,0 +1,3 @@
+Version 2022 07 06
+  Addition of Grid reference and square for each postcode
+  Upgrade to work with PHP 8.0

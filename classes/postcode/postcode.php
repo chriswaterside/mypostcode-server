@@ -19,6 +19,8 @@ class PostcodePostcode {
     public $Distance;
     public $Easting;
     public $Northing;
+    public $Square;
+    public $Gridref;
 
     public function __construct($pc, $quality, $dist, $east, $north) {
         $pcode = $pc;
@@ -30,6 +32,9 @@ class PostcodePostcode {
         $this->Distance = $dist;
         $this->Easting = $east;
         $this->Northing = $north;
+        $loc = Gridsquares::getSquare($east, $north);
+        $this->Square = $loc[0];
+        $this->Gridref = $loc[1];
     }
 
 }
