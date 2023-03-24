@@ -56,7 +56,7 @@ class Functions {
         $okay = $mailer->send();
         if (!$okay) {
             Logfile::writeWhen("Email notification sent");
-                    }
+        }
     }
 
 }
