@@ -39,5 +39,24 @@ class Functions {
          }
          return $codes;
     }
+    
+       public static function eMail($msg) {
+
+        date_default_timezone_set('Europe/London');
+        $domain = "theramblers.org.uk";
+        // Create a new PHPMailer instance
+        $mailer = new PHPMailer\PHPMailer\PHPMailer;
+        $mailer->setFrom("admin@" . $domain, $domain);
+        $mailer->addAddress(NOTIFYEMAILADDRESS, 'Web Master');
+        $mailer->isHTML(true);
+        $mailer->Subject = "Ramblers Postcode Feed Status email";
+        $mailer->Body = "<p>" . $msg . "</p>" ;
+        
+     
+        $okay = $mailer->send();
+        if (!$okay) {
+            Logfile::writeWhen("Email notification sent");
+                    }
+    }
 
 }
