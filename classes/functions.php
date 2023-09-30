@@ -49,7 +49,7 @@ class Functions {
         $mailer->setFrom("admin@" . $domain, $domain);
         $mailer->addAddress(NOTIFYEMAILADDRESS, 'Web Master');
         $mailer->isHTML(true);
-        $mailer->Subject = "Ramblers Postcode Feed Status email";
+        $mailer->Subject = "Ramblers Postcode Feed update status";
         $mailer->Body = "<p>" . $msg . "</p>" ;
         
      

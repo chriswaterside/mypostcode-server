@@ -84,9 +84,9 @@ class PostcodeDatabase extends Database {
     }
 
     public function removeOldPostcodes() {
-        $today = new DateTime(NULL);
+        $today = new DateTime();
         $date = $today;
-        $date->sub(new DateInterval('P365D'));
+        $date->sub(new DateInterval('P60D'));
         $formatdate = $date->format('Y-m-d');
         $query = "DELETE FROM `postcodes` WHERE `updated` <= '[Date]'";
         $query = str_replace("[Date]", $formatdate, $query);

@@ -24,9 +24,9 @@ class PostcodePostcode {
 
     public function __construct($pc, $quality, $dist, $east, $north) {
         $pcode = $pc;
-        if (strlen($pcode) == 7) {
-            $pcode = substr($pc, 0, 4) . " " . substr($pc, 4);
-        }
+//        if (strlen($pcode) == 7) {
+//            $pcode = substr($pc, 0, 4) . " " . substr($pc, 4);
+//        }
         $this->Postcode = $pcode;
         $this->Quality = $quality;
         $this->Distance = $dist;

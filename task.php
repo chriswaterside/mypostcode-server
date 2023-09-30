@@ -4,7 +4,7 @@ const POSTCODEFOLDER = 'postcodefiles';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-if (version_compare(PHP_VERSION, '7.0.0') < 0) {
+if (version_compare(PHP_VERSION, '8.0.0') < 0) {
     echo 'You MUST be running on PHP version 7.0.0 or higher, running version: ' . \PHP_VERSION . "\n";
     die();
 }
@@ -52,7 +52,7 @@ if (count($files) > 0) {
             echo "Removing old postcodes";
             $db->removeOldPostcodes();
         }
-        Functions::eMail("Postcodes for file " . $file . " completed");
+        Functions::eMail("Postcodes within file " . $file . " updated.");
         $db->closeConnection();
     }
 }
