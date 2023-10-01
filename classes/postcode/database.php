@@ -48,9 +48,12 @@ class PostcodeDatabase extends Database {
         return $ok;
     }
 
-    public function getPostcode($pc) {
-        $where = " WHERE postcode='" . $pc."'";
-        $ok = parent::runQuery("SELECT * FROM postcodes " . $where);
+    public function getPostcode($postcode) {
+        $pc = strtoupper(str_replace(" ", "", $postcode));
+       
+        $sql = 'SELECT * FROM `postcodes` WHERE REPLACE(`postcode`," ","") = "[POSTCODE]"';
+        $sql = str_replace("[POSTCODE]", $pc, $sql);
+        $ok = parent::runQuery($sql);
         if ($ok === false) {
             Logfile::writeError($this->db->ErrorMsg());
         }

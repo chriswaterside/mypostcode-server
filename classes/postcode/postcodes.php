@@ -51,9 +51,7 @@ class PostcodePostcodes {
 
     public function getPostcode($postcode) {
 
-    //    $pc = strtoupper(str_replace(" ", "", $postcode));
-        $pc = $postcode;
-        $ok = $this->db->getPostcode($pc);
+        $ok = $this->db->getPostcode($postcode);
         if ($ok == true) {
             $results = $this->db->getResult();
             $codes = array();
